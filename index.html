@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Locate</title>
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#14302a">
+<link rel="icon" href="{{ url_for('static', filename='icon.svg') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main>
+  <section class="dial-wrap">
+    <button id="themeBtn" class="ghost theme" aria-label="Switch light or dark mode">Dark mode</button>
+    <div class="dial" id="dial">
+      <span class="n">N</span>
+      <div class="needle" id="needle"></div>
+      <div class="hub"></div>
+    </div>
+    <p class="target" id="target">No place selected</p>
+    <p class="dist" id="dist">--</p>
+    <p class="status" id="status">Waiting for your location…</p>
+    <div class="tools">
+      <button id="compassBtn" class="ghost" hidden>Phone compass</button>
+      <button id="trailBtn" class="ghost">Start trail</button>
+      <button id="backBtn" class="ghost">Way back</button>
+      <button id="shareBtn" class="ghost">Copy share link</button>
+      <a class="btnlink" href="/export.gpx">Export GPX</a>
+    </div>
+    <button id="sosBtn" class="sos">SOS: share my location</button>
+    
+  </section>
+
+  <section class="panel">
+    <form id="form">
+      <input id="name" placeholder="Name this spot (e.g. Parking)" maxlength="40" required>
+      <select id="cat" aria-label="Category">
+        <option value="home">🏠 Home</option><option value="food">🍽️ Food</option>
+        <option value="emergency">🚑 Emergency</option><option value="work">💼 Work</option>
+        <option value="other" selected>📍 Other</option>
+      </select>
+      <button type="submit">Pin my location</button>
+    </form>
+    <div class="chips" id="chips"></div>
+    <p class="error" id="error" role="alert"></p>
+    <ul id="list"></ul>
+  </section>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>if("serviceWorker" in navigator)navigator.serviceWorker.register("/sw.js");</script>
+</body>
+</html>
