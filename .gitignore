@@ -1,0 +1,5 @@
+data/
+pins.json
+trail.json
+__pycache__/
+*.pyc
